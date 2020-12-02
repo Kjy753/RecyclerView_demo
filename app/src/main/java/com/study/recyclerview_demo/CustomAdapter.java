@@ -1,6 +1,7 @@
 package com.study.recyclerview_demo;
 
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -26,5 +27,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     public CustomAdapter(ArrayList<Dictionary> mList) {
         this.mList = mList;
+    }
+
+    @NonNull
+    @Override
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return 0;
     }
 }
