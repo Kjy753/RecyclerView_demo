@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.ViewHolder {
+public class CustomAdapter extends RecyclerView.Adapter {
 
     private ArrayList<Dictionary> mList;
 
@@ -23,4 +23,8 @@ public class CustomAdapter extends RecyclerView.ViewHolder {
           this.korean = (TextView) itemView.findViewById(R.id.korean_listitem);
       }
   }
+
+    public CustomAdapter(ArrayList<Dictionary> mList) {
+        this.mList = mList;
+    }
 }
