@@ -53,7 +53,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         /*가정 먼저 우리가 뿌려줄 데이터의 전체 길이를 리턴하는 getItemCount 메소드가 실행.*/
     @Override
     public int getItemCount() {
-        return 0;
+        return  (null != mList ? mList.size() : 0);
 
     }
 }
