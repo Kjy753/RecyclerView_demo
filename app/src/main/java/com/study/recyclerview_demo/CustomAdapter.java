@@ -40,9 +40,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     /*생성된 뷰 홀더에 데이터를 바인드 해주는 함수입니다.*/
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-      holder.id.setText(mList.get(position).getId());
-      holder.english.setText(mList.get(position).getEnglish());
-      holder.korean.setText(mList.get(position).getKorean());
+
     }
         /*가정 먼저 우리가 뿌려줄 데이터의 전체 길이를 리턴하는 getItemCount 메소드가 실행.*/
     @Override
