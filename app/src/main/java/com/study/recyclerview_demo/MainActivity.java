@@ -1,10 +1,13 @@
 package com.study.recyclerview_demo;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import java.util.ArrayList;
 
@@ -12,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Dictionary> mArrayList;
     private CustomAdapter mAdapter;
+    private int count = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,27 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new CustomAdapter(mArrayList);
         mRecyclerView.setAdapter(mAdapter);
 
+            /*리사이클러뷰 사이에 구분선 넣는작업.*/
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                mLinearLayoutManager.getOrientation());
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
+        Button buttonInsert = (Button) findViewById(R.id.button_insert);
+        buttonInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                count++;
+
+                Dictionary data = new Dictionary(count + "," ,"apple"+ count, "사과"+ count);
+
+                mArrayList.add(data);
+                /*리사이클러뷰의 마지막에 삽입.*/
+
+                mAdapter.notifyDataSetChanged();
+                /*변경된 데이터를 반영.*/
+
+            }
+        });
     }
 }
