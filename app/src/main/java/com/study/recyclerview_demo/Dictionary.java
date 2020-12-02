@@ -29,4 +29,10 @@ public class Dictionary {
     public void setKorean(String korean) {
         Korean = korean;
     }
+
+    public Dictionary(String id, String english, String korean) {
+        this.id = id;
+        English = english;
+        Korean = korean;
+    }
 }
