@@ -1,6 +1,7 @@
 package com.study.recyclerview_demo;
 
 import android.util.TypedValue;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -33,8 +34,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     /*카운트 다음으로 호출되는 함수로 ViewHolder이 생성되는 함수로서 여기서 ViewHolder 객체를만들어주면 됩니다.*/
     @NonNull
     @Override
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext())
+                .inflate(R.layout.item_list,viewGroup,false);
+
+        CustomViewHolder viewHolder = new CustomViewHolder(view);
+
+        return  viewHolder;
     }
 
     /*생성된 뷰 홀더에 데이터를 바인드 해주는 함수입니다.*/
