@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Dictionary> mArrayList;
+    private CustomAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,10 @@ public class MainActivity extends AppCompatActivity {
         LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
 
+        mArrayList = new ArrayList<>();
 
+        mAdapter = new CustomAdapter(mArrayList);
+        mRecyclerView.setAdapter(mAdapter);
 
 
     }
