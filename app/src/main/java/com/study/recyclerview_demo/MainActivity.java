@@ -1,13 +1,18 @@
 package com.study.recyclerview_demo;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
                 mLinearLayoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
 
+
+
         Button buttonInsert = (Button) findViewById(R.id.button_insert);
         buttonInsert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,5 +60,39 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+    }
+    public interface ClickListener{
+        void onClick(View view, int position);
+
+        void onLongClick(View view, int position);
+    }
+
+    public static class RecyclerTouchListener {
+        private GestureDetector gestureDetector;
+        private MainActivity.ClickListener clickListener;
+
+        public RecyclerTouchListener(Context context, final RecyclerView recyclerView, final MainActivity.ClickListener clickListener){
+            this.clickListener = clickListener;
+            gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
+
+                @Override
+                public boolean onSingleTapConfirmed(MotionEvent e) {
+                    return true;
+                }
+
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    View child = recyclerView.findChildViewUnder(e.getX(),e.getY());
+                    if(child != null && clickListener != null){
+                        clickListener.onLongClick(child,recyclerView.getChildAdapterPosition(child));
+                    }
+                }
+            });
+        }
+
+
+
+
     }
 }
