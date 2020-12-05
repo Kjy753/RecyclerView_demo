@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
         Button buttonInsert = (Button) findViewById(R.id.button_insert);
         buttonInsert.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         void onLongClick(View view, int position);
     }
 
-    public static class RecyclerTouchListener {
+    public static class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
         private GestureDetector gestureDetector;
         private MainActivity.ClickListener clickListener;
 
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onSingleTapUp(MotionEvent e) {
                     return true;
                 }
-
+                    /*롱 클릭 이벤트*/
                 @Override
                 public void onLongPress(MotionEvent e) {
                     View child = recyclerView.findChildViewUnder(e.getX(),e.getY());
@@ -91,8 +92,24 @@ public class MainActivity extends AppCompatActivity {
             });
         }
 
+            /*클릭 이벤트*/
+        @Override
+        public boolean onInterceptTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
+            View child = rv.findChildViewUnder(e.getX(),e.getY());
+            if(child != null && clickListener != null && gestureDetector.onTouchEvent(e)){
+                clickListener.onClick(child, rv.getChildAdapterPosition(child));
+            }
+            return false;
+        }
 
+        @Override
+        public void onTouchEvent(@NonNull RecyclerView rv, @NonNull MotionEvent e) {
 
+        }
 
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
+
+        }
     }
 }
