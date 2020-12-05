@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             gestureDetector = new GestureDetector(context, new GestureDetector.SimpleOnGestureListener(){
 
                 @Override
-                public boolean onSingleTapConfirmed(MotionEvent e) {
+                public boolean onSingleTapUp(MotionEvent e) {
                     return true;
                 }
 
